@@ -5,6 +5,7 @@ for (var i=0; i < numberOfDrums; i++){
     document.querySelectorAll(".drum")[i].addEventListener('click', function (){
         var buttonInnerHTML = this.innerHTML;
         playAudio(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -12,8 +13,11 @@ for (var i=0; i < numberOfDrums; i++){
 
 document.addEventListener("keydown", function (event){
     playAudio(event.key);
+    buttonAnimation(event.key);
 });
 
+
+//Switch Audio
 function playAudio(key){
     switch (key) {
         case "w":
@@ -49,3 +53,13 @@ function playAudio(key){
     }
 }
 
+//animation
+
+function buttonAnimation(key){
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function (){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
