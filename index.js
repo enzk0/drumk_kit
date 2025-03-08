@@ -1,17 +1,21 @@
+//Button Press
 var numberOfDrums = document.querySelectorAll(".drum").length;
 
 for (var i=0; i < numberOfDrums; i++){
-    document.querySelectorAll(".drum")[i].addEventListener('click', playAudio);
+    document.querySelectorAll(".drum")[i].addEventListener('click', function (){
+        var buttonInnerHTML = this.innerHTML;
+        playAudio(buttonInnerHTML);
+    });
 }
 
-function handleClick(){
-    console.log("I got clicked!");
-}
+//Keydown press
 
-function playAudio(){
-    var buttonPressed = this.innerHTML;
+document.addEventListener("keydown", function (event){
+    playAudio(event.key);
+});
 
-    switch (buttonPressed) {
+function playAudio(key){
+    switch (key) {
         case "w":
             var crash = new Audio("./sounds/crash.mp3");
             crash.play();
